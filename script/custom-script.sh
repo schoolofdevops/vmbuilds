@@ -48,7 +48,7 @@ yum -y install gcc
 
 echo "Installing python-pip python-wheel"
 #Installing python-pip python-wheel
-yum install python-pip python-wheel
+yum -y install python-pip python-wheel
 
 echo "Installing ez_setup"
 #Installing ez_setup
