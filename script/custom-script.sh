@@ -33,25 +33,31 @@ echo "Copying 'docker-compose' 'docker-machine' & 'kubectl' and adding to PATH"
 #Copying 'docker-compose' 'docker-machine' & 'kubectl'
 cp /opt/local_files/bin_files/* /usr/bin/.
 
-echo "creating local_repo"
-yum install createrepo -y
-mkdir -p /local_repo/puppet4
-createrepo /local_repo
+echo "Installing Ansible"
+#Installing Ansible
+sudo yum install ansible
 
-echo "Enabling puppet Repository"
-sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
+echo "Installing gcc"
+#Installing gcc
+sudo yum install gcc
 
-echo "Adding puppet4 packages and dependency to local_repo"
-yum install --downloadonly --downloaddir=/local_repo/puppet4 ntp puppetserver puppet-agent
+echo "Installing python-2.7.12"
+#Installing python-2.7.12
+cd /usr/src
+wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz
+tar xzf Python-2.7.12.tgz
+cd Python-2.7.12
+./configure
+make altinstall
 
-echo "Adding Repo Entry"
-sudo tee /etc/yum.repos.d/local_repo.repo <<-'EOF'
-[local_repo]
-name=local Repository
-baseurl=file:///local_repo
-enabled=1
-gpgcheck=0
-EOF
+echo "Installing pip"
+#Installing pip
+sudo python get-pip.py
 
-echo "Updating local_repo"
-createrepo --update /local_repo
+echo "Installing ez_setup"
+#Installing ez_setup
+wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+
+echo "Installing ansible-container"
+#Installing ansible-container
+sudo pip install ansible-container
