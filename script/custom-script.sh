@@ -55,13 +55,17 @@ cd Python-2.7.12
 ./configure
 make altinstall
 
-echo "Installing pip"
-#Installing pip
-python get-pip.py
+echo "Upgarding Pip"
+#Upgarding Pip
+pip install --upgrade pip
 
 echo "Installing ez_setup"
 #Installing ez_setup
 wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+
+echo "Upgarding setuptools"
+#Upgarding setuptools
+pip install --upgrade setuptools
 
 echo "Installing ansible-container"
 #Installing ansible-container
