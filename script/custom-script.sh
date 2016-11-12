@@ -9,11 +9,11 @@ set -eux
 # yum install -y curl wget git tmux firefox xvfb
 echo "Installing Updates"
 #Installing updates
-sudo yum install update
+yum install update
 
 echo "Installing Packages"
 #Installing Packages
-sudo yum install tree screen git wget nano emacs vim
+yum install tree screen git wget nano emacs vim
 
 echo "Installing EPEL Repo"
 #Installing EPEL Repo
@@ -22,11 +22,11 @@ cd /tmp/ && rpm -ivh epel-release-7-8.noarch.rpm
 
 echo "Installing Updates"
 #Installing updates
-sudo yum install update
+yum install update
 
 echo "Installing Docker Repo"
 #Installing Docker Repo
-sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
+tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
 name=Docker Repository
 baseurl=https://yum.dockerproject.org/repo/main/centos/7/
@@ -37,23 +37,23 @@ EOF
 
 echo "Installing docker-engine"
 #Installing docker-engine
-sudo yum install docker-engine
+yum install docker-engine
 
 echo "Installing docker-compose"
 #Installing docker-compose
-sudo curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/bin/docker-compose
+curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/bin/docker-compose
 
 echo "Installing docker-machine"
 #Installing docker-machine
-sudo curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` > /usr/bin/docker-machine
+curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` > /usr/bin/docker-machine
 
 echo "Installing Ansible"
 #Installing Ansible
-sudo yum install ansible
+yum install ansible
 
 echo "Installing gcc"
 #Installing gcc
-sudo yum install gcc
+yum install gcc
 
 echo "Installing python-2.7.12"
 #Installing python-2.7.12
@@ -66,7 +66,7 @@ make altinstall
 
 echo "Installing pip"
 #Installing pip
-sudo python get-pip.py
+python get-pip.py
 
 echo "Installing ez_setup"
 #Installing ez_setup
@@ -74,4 +74,4 @@ wget https://bootstrap.pypa.io/ez_setup.py -O - | python
 
 echo "Installing ansible-container"
 #Installing ansible-container
-sudo pip install ansible-container
+pip install ansible-container
