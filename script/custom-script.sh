@@ -46,15 +46,6 @@ echo "Installing gcc"
 #Installing gcc
 yum -y install gcc
 
-echo "Installing python-2.7.12"
-#Installing python-2.7.12
-cd /usr/src
-wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz
-tar xzf Python-2.7.12.tgz
-cd Python-2.7.12
-./configure
-make altinstall
-
 echo "Upgarding Pip"
 #Upgarding Pip
 pip install --upgrade pip
