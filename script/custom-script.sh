@@ -9,7 +9,7 @@ set -eux
 # yum install -y curl wget git tmux firefox xvfb
 echo "Installing Updates"
 #Installing updates
-yum -y install update
+yum -y update
 
 echo "Installing Packages"
 #Installing Packages
@@ -22,7 +22,7 @@ cd /tmp/ && rpm -ivh epel-release-7-8.noarch.rpm
 
 echo "Installing Updates"
 #Installing updates
-yum -y install update
+yum -y update
 
 echo "Installing Docker Repo"
 #Installing Docker Repo
