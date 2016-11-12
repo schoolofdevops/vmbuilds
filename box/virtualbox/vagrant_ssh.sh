@@ -1,12 +1,12 @@
 #!/bin/bash
 
+sudo yum install --downloadonly --downloaddir=/vagrant/local_files/updates tree screen git wget nano emacs vim
+
 sudo yum install wget -y && \
 cd /tmp/ && wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm && \
 cd /tmp/ && rpm -ivh epel-release-7-8.noarch.rpm
 
 sudo yum install --downloadonly --downloaddir=/vagrant/local_files/updates update
-
-sudo yum install --downloadonly --downloaddir=/vagrant/local_files/updates tree screen git wget nano emacs vim
 
 sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
 [dockerrepo]
