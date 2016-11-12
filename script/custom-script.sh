@@ -7,51 +7,71 @@ set -eux
 #
 # For example:
 # yum install -y curl wget git tmux firefox xvfb
-echo  "Copying local files"
+echo "Installing Updates"
+#Installing updates
+sudo yum install update
 
-cd /opt
-tar -xzf /tmp/local_files.tar.gz
+echo "Installing Packages"
+#Installing Packages
+sudo yum install tree screen git wget nano emacs vim
 
-echo  "Install update packages"
-# Install update packages
-cd /opt/local_files/updates
-rpm -Uvh *.rpm
+echo "Installing EPEL Repo"
+#Installing EPEL Repo
+cd /tmp/ && wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm && \
+cd /tmp/ && rpm -ivh epel-release-7-8.noarch.rpm
 
-echo  "Install Docker_dependency packages"
-# Install Docker_dependency packages
-mkdir -p /var/lib/docker
-cd /opt/local_files/docker_dependency
-rm -rf libtool-ltdl-2.4.2-21.el7_2.x86_64.rpm
-rpm -Uvh *.rpm
+echo "Installing Updates"
+#Installing updates
+sudo yum install update
 
-echo  "Install Docker package"
-# Install Docker package
-cd /opt/local_files/docker
-rpm -Uvh *.rpm
-
-echo "Copying 'docker-compose' 'docker-machine' & 'kubectl' and adding to PATH"
-#Copying 'docker-compose' 'docker-machine' & 'kubectl'
-cp /opt/local_files/bin_files/* /usr/bin/.
-
-echo "creating local_repo"
-yum install createrepo -y
-mkdir -p /local_repo/puppet4
-createrepo /local_repo
-
-echo "Enabling puppet Repository"
-sudo rpm -ivh https://yum.puppetlabs.com/puppetlabs-release-pc1-el-7.noarch.rpm
-
-echo "Adding puppet4 packages and dependency to local_repo"
-yum install --downloadonly --downloaddir=/local_repo/puppet4 ntp puppetserver puppet-agent
-
-echo "Adding Repo Entry"
-sudo tee /etc/yum.repos.d/local_repo.repo <<-'EOF'
-[local_repo]
-name=local Repository
-baseurl=file:///local_repo
+echo "Installing Docker Repo"
+#Installing Docker Repo
+sudo tee /etc/yum.repos.d/docker.repo <<-'EOF'
+[dockerrepo]
+name=Docker Repository
+baseurl=https://yum.dockerproject.org/repo/main/centos/7/
 enabled=1
-gpgcheck=0
+gpgcheck=1
+gpgkey=https://yum.dockerproject.org/gpg
 EOF
 
-echo "Updating local_repo"
-createrepo --update /local_repo
+echo "Installing docker-engine"
+#Installing docker-engine
+sudo yum install docker-engine
+
+echo "Installing docker-compose"
+#Installing docker-compose
+sudo curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/bin/docker-compose
+
+echo "Installing docker-machine"
+#Installing docker-machine
+sudo curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machine-`uname -s`-`uname -m` > /usr/bin/docker-machine
+
+echo "Installing Ansible"
+#Installing Ansible
+sudo yum install ansible
+
+echo "Installing gcc"
+#Installing gcc
+sudo yum install gcc
+
+echo "Installing python-2.7.12"
+#Installing python-2.7.12
+cd /usr/src
+wget https://www.python.org/ftp/python/2.7.12/Python-2.7.12.tgz
+tar xzf Python-2.7.12.tgz
+cd Python-2.7.12
+./configure
+make altinstall
+
+echo "Installing pip"
+#Installing pip
+sudo python get-pip.py
+
+echo "Installing ez_setup"
+#Installing ez_setup
+wget https://bootstrap.pypa.io/ez_setup.py -O - | python
+
+echo "Installing ansible-container"
+#Installing ansible-container
+sudo pip install ansible-container

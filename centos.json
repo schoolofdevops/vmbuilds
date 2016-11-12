@@ -45,12 +45,6 @@
   ],
   "provisioners": [
     {
-      "type": "file",
-      "source": "box/virtualbox/local_files.tar.gz",
-      "destination": "/tmp/local_files.tar.gz"
-    },
-
-    {
       "environment_vars": [
         "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}",
