@@ -1,0 +1,13 @@
+{
+  "_comment": "Build with `packer build -var-file=centos72.json centos.json`",
+  "vm_name": "centos72",
+  "cpus": "1",
+  "disk_size": "65536",
+  "iso_checksum": "f90e4d28fa377669b2db16cbcb451fcb9a89d2460e3645993e30e137ac37d284",
+  "iso_checksum_type": "sha256",
+  "iso_name": "CentOS-7-x86_64-Minimal-1511.iso",
+  "iso_url": "../CentOS-7-x86_64-Minimal-1511.iso",
+  "kickstart": "ks7.cfg",
+  "memory": "512",
+  "headless": "true"
+}
