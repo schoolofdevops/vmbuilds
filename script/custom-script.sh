@@ -9,11 +9,11 @@ set -eux
 # yum install -y curl wget git tmux firefox xvfb
 echo "Installing Updates"
 #Installing updates
-yum install update
+yum -y install update
 
 echo "Installing Packages"
 #Installing Packages
-yum install tree screen git wget nano emacs vim
+yum -y install tree screen git wget nano emacs vim
 
 echo "Installing EPEL Repo"
 #Installing EPEL Repo
@@ -22,7 +22,7 @@ cd /tmp/ && rpm -ivh epel-release-7-8.noarch.rpm
 
 echo "Installing Updates"
 #Installing updates
-yum install update
+yum -y install update
 
 echo "Installing Docker Repo"
 #Installing Docker Repo
@@ -37,7 +37,7 @@ EOF
 
 echo "Installing docker-engine"
 #Installing docker-engine
-yum install docker-engine
+yum -y install docker-engine
 
 echo "Installing docker-compose"
 #Installing docker-compose
@@ -49,11 +49,11 @@ curl -L https://github.com/docker/machine/releases/download/v0.8.2/docker-machin
 
 echo "Installing Ansible"
 #Installing Ansible
-yum install ansible
+yum -y install ansible
 
 echo "Installing gcc"
 #Installing gcc
-yum install gcc
+yum -y install gcc
 
 echo "Installing python-2.7.12"
 #Installing python-2.7.12
