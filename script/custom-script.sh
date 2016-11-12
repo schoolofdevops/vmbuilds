@@ -46,10 +46,6 @@ echo "Installing gcc"
 #Installing gcc
 yum -y install gcc
 
-echo "Upgarding Pip"
-#Upgarding Pip
-pip install --upgrade pip
-
 echo "Installing ez_setup"
 #Installing ez_setup
 wget https://bootstrap.pypa.io/ez_setup.py -O - | python
