@@ -15,15 +15,6 @@ echo "Installing Packages"
 #Installing Packages
 yum -y install tree screen git wget nano emacs vim
 
-echo "Installing EPEL Repo"
-#Installing EPEL Repo
-cd /tmp/ && wget http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-8.noarch.rpm && \
-cd /tmp/ && rpm -ivh epel-release-7-8.noarch.rpm
-
-echo "Installing Updates"
-#Installing updates
-yum -y update
-
 echo "Installing Docker Repo"
 #Installing Docker Repo
 tee /etc/yum.repos.d/docker.repo <<-'EOF'
