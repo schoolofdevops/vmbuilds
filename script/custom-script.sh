@@ -13,7 +13,7 @@ yum -y update
 
 echo "Installing Packages"
 #Installing Packages
-yum -y install tree screen git wget nano emacs vim
+yum -y install wget nano emacs vim
 
 echo "Installing Docker Repo"
 #Installing Docker Repo
@@ -68,7 +68,7 @@ mkdir -p /local_repo/
 createrepo /local_repo
 
 echo "Adding packages and dependency to local_repo"
-yum install --downloadonly --downloaddir=/local_repo ntp httpd mariadb-server mariadb php php-mysql php-fpm php-common php-cli php-dba
+yum install --downloadonly --downloaddir=/local_repo ntp httpd mariadb-server mariadb php php-mysql php-fpm php-common php-cli php-dba tree screen git bzip2 telnet telnet-server tcptraceroute traceroute bind-utils nmap
 
 echo "Adding Repo Entry"
 sudo tee /etc/yum.repos.d/local_repo.repo <<-'EOF'
