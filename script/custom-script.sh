@@ -61,3 +61,23 @@ pip install --upgrade setuptools
 echo "Installing ansible-container"
 #Installing ansible-container
 pip install ansible-container
+
+echo "creating local_repo"
+yum install createrepo -y
+mkdir -p /local_repo/
+createrepo /local_repo
+
+echo "Adding packages and dependency to local_repo"
+yum install --downloadonly --downloaddir=/local_repo ntp httpd mariadb-server mariadb php php-mysql php-fpm php-common php-cli php-dba
+
+echo "Adding Repo Entry"
+sudo tee /etc/yum.repos.d/local_repo.repo <<-'EOF'
+[local_repo]
+name=local Repository
+baseurl=file:///local_repo
+enabled=1
+gpgcheck=0
+EOF
+
+echo "Updating local_repo"
+createrepo --update /local_repo
