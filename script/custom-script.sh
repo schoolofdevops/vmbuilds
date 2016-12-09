@@ -62,6 +62,18 @@ echo "Installing ansible-container"
 #Installing ansible-container
 pip install ansible-container
 
+echo "Installing pywinrm"
+#Installing pywinrm
+pip install "pywinrm>=0.1.1"
+
+echo "Installing python-kerberos dependencies"
+#Installing python-kerberos dependencies
+yum -y install python-devel krb5-devel krb5-libs krb5-workstation
+
+echo "Installing python-kerberos"
+#Installing python-kerberos
+pip install kerberos requests_kerberos
+
 echo "creating local_repo"
 yum install createrepo -y
 mkdir -p /local_repo/
